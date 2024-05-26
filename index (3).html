@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asset Information</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+        }
+        .info-group {
+            margin-bottom: 15px;
+        }
+        .info-group label {
+            display: block;
+            font-weight: bold;
+        }
+        .info-group .info {
+            margin-top: 5px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>SIGNAL</h2>
+        <div class="info-group">
+            <label for="assetSignal">Asset Signal:</label>
+            <div id="assetSignal" class="info">EUR/USD</div>
+        </div>
+        <div class="info-group">
+            <label for="time">Time:</label>
+            <div id="time" class="info">4H</div>
+        </div>
+        <div class="info-group">
+            <label for="result">Result:</label>
+            <div id="result" class="info">WAITING</div>
+        </div>
+        <div class="info-group">
+            <label for="probability">Probability:</label>
+            <div id="probability" class="info">85%</div>
+        </div>
+    </div>
+
+</body>
+</html>

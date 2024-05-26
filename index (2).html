@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Financial Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .form-container {
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+        .form-group input[type="radio"] {
+            width: auto;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+INSTRUCTION MAKE SURE YOU USE THE NAME  THAT YOU THE THAT YOU USE TO SEND THE MONEY ON THE FORM AND ALSO FOR WITHDRAWAL ALL YOU NEDED TO DO IS BUY OR SELL WE ALSO GIVE SIGNAL  IF LOSSES OCCUR WE GAVE 50% OF OF THE AMOUNT YOU INFEST THE MINIMUM INVESTMENT IS 1,000 AND THE MAXIMUM IS 1,000,000 KINDLY SEND THE FUND TO THIS ACC                  THIS ACC NUMBER WAS SENT AT 8:52 THIS ACCOUNT EXPIRE AFTER 1HOUR
+    <div class="form-container">
+        <h2>INVESTMENT INFO</h2>
+        <form id="invest ">info
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="accNumber">Account Number:</label>
+                <input type="text" id="accNumber" name="accNumber" required>
+            </div>
+            <div class="form-group">
+                <label for="bankName">Bank Name:</label>
+                <input type="text" id="bankName" name="bankName" required>
+            </div>
+            <div class="form-group">
+                <label>Asset Option:</label>
+                <input type="radio" id="eurusd" name="asset" value="EUR/USD" required>
+                <label for="eurusd">EUR/USD</label>
+                <input type="radio" id="cadchf" name="asset" value="CAD/CHF">
+                <label for="cadchf">CAD/CHF</label>
+                <input type="radio" id="eurjpy" name="asset" value="EUR/JPY">
+                <label for="eurjpy">EUR/JPY</label>
+                <input type="radio" id="audusd" name="asset" value="AUD/USD">
+                <label for="audusd">AUD/USD</label>
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label>Hours Option:</label>
+                <input type="radio" id="1hr" name="hours" value="1hr" required>
+                <label for="1hr">1hr</label>
+                <input type="radio" id="2hr" name="hours" value="2hr">
+                <label for="2hr">2hr</label>
+                <input type="radio" id="3hr" name="hours" value="3hr">
+                <label for="3hr">3hr</label>
+                <input type="radio" id="4hr" name="hours" value="4hr">
+                <label for="4hr">4hr</label>
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone Number:</label>
+                <input type="tel" id="phone" name="phone" required>
+            </div>
+            <div class="form-group">
+                <label>Buy/Sell Option:</label>
+                <input type="radio" id="buy" name="transaction" value="Buy" required>
+                <label for="buy">Buy</label>
+                <input type="radio" id="sell" name="transaction" value="Sell">
+                <label for="sell">Sell</label>
+            </div>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <div class="result" id="result"></div>
+
+    <script>
+        const form = document.getElementById('financialForm');
+        const result = document.getElementById('result');
+
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const formData = new FormData(form);
+            let resultHTML = '<h3>Form Data</h3>';
+            formData.forEach((value, key) => {
+                resultHTML += `<p><strong>${key}:</strong> ${value}</p>`;
+            });
+            result.innerHTML = resultHTML;
+
+            // Save the form data to localStorage
+            localStorage.setItem('formData', JSON.stringify(Object.fromEntries(formData)));
+
+            // Set the expiry time for 24 hours
+            const now = new Date();
+            const expiryTime = now.getTime() + 24 * 60 * 60 * 1000; // 24 hours in milliseconds
+            localStorage.setItem('expiryTime', expiryTime);
+        });
+
+        // Check if there is saved form data in localStorage
+        const savedFormData = localStorage.getItem('formData');
+        const expiryTime = localStorage.getItem('expiryTime');
+        const now = new Date().getTime();
+
+        if (savedFormData && expiryTime && now < expiryTime) {
+            const formData = JSON.parse(savedFormData);
+            let resultHTML = '<h3>Form Data</h3>';
+            for (const key in formData) {
+                resultHTML += `<p><strong>${key}:</strong> ${formData[key]}</p>`;
+            }
+            result.innerHTML = resultHTML;
+        } else {
+            // Clear the localStorage if the data is expired
+            localStorage.removeItem('formData');
+            localStorage.removeItem('expiryTime');
+        }
+    </script>
+</body>
+</html>
